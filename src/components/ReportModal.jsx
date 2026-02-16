@@ -5,6 +5,7 @@ const ReportModal = ({ isOpen, onClose }) => {
         name: '',
         email: '',
         category: '',
+        location: '', // New field added to state
         problem: '',
     });
 
@@ -12,7 +13,8 @@ const ReportModal = ({ isOpen, onClose }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Logic to save to localStorage can go here
+        // The location data is now included in the submission object
+        console.log("Submission Data:", formData);
         alert("Report Submitted Successfully!");
         onClose();
     };
@@ -58,6 +60,17 @@ const ReportModal = ({ isOpen, onClose }) => {
                             <option value="Public Transport">Public Transport</option>
                             <option value="Open Dumping">Open Dumping</option>
                         </select>
+                    </div>
+
+                    {/* --- NEW LOCATION FIELD --- */}
+                    <div className="field-group">
+                        <label>Enter Location (Area/Street):</label>
+                        <input
+                            type="text"
+                            placeholder="e.g. MG Road, Near Central Park"
+                            required
+                            onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+                        />
                     </div>
 
                     <div className="field-group">
