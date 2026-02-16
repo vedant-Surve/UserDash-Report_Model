@@ -1,14 +1,16 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import Signup from './pages/Signup';
-import Login from './pages/login';
-import ProtectedRoute from './Components/ProtectedRoute';
+import Login from './pages/Login'; // Capitalized L to match standard naming
+import ProtectedRoute from './components/ProtectedRoute'; // Lowercase 'c' for components folder
 
-// Import the CSS file correctly
+// Import the actual Dashboard component you created
+import UserDashboard from './pages/UserDashboard'; 
+
+// Import the CSS file
 import './App.css';
 
-// Dashboard Placeholders
-const UserDB = () => <div className="dashboard"><h1>User Dashboard</h1><p>Welcome to CivicLens.</p></div>;
+// Admin and Authority placeholders (You can move these to separate files later)
 const AdminDB = () => <div className="dashboard"><h1>Admin Panel</h1><p>System Management.</p></div>;
 const AuthDB = () => <div className="dashboard"><h1>Authority Portal</h1><p>Review Reports.</p></div>;
 
@@ -24,7 +26,8 @@ function App() {
           {/* Role-based Protected Routes */}
           <Route path="/user" element={
             <ProtectedRoute allowedRole="Normal User">
-              <UserDB />
+              {/* Using the actual imported Dashboard instead of UserDB */}
+              <UserDashboard />
             </ProtectedRoute>
           } />
           
